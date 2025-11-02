@@ -26,8 +26,8 @@ def pixels_to_neqr(pixels):
             representation.append((r_bin, g_bin, b_bin, pos))
 
     print(len(representation), " -- pixels converted to NEQR format.")
-    print("\nRGB NEQR Representation (first 3 pixels):")
-    for r in representation[:3]:
+    print("\nRGB NEQR Representation:")
+    for r in representation:
         print(r)
     # qc = create_neqr_circuit(representation)
     # simulate_circuit(qc)

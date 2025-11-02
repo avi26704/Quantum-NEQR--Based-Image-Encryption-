@@ -17,20 +17,11 @@
         <div class="result-box">
           <strong>{{ result }}</strong>
         </div>
-        {% endif %}
-
-        {% if image_data %}
+        {% endif %} {% if image_data %}
         <div class="result-box">
           <h3>Decrypted Image:</h3>
-
-          <img
-            src="data:image/png;base64,{{ image_data }}"
-            alt="Decrypted Image"
-            style="max-width: 250px; border-radius: 8px; margin-top: 10px"
-          />
           <br />
 
-          <!-- ✅ Download Decrypted Image -->
           <a
             href="data:image/png;base64,{{ image_data }}"
             download="decrypted_image.png"
@@ -47,7 +38,6 @@
             >Download Decrypted Image</a
           >
 
-          <!-- ✅ Metrics block -->
           {% if metrics %}
           <div
             class="metrics-box"
@@ -60,13 +50,13 @@
               text-align: left;
             "
           >
-            <h4 style="margin: 0 0 8px 0;">Quality Metrics</h4>
-            <p style="margin: 4px 0; font-size: 14px; line-height: 1.4;">
+            <h4 style="margin: 0 0 8px 0">Quality Metrics</h4>
+            <p style="margin: 4px 0; font-size: 14px; line-height: 1.4">
               <strong>MSE:</strong> {{ metrics.mse }}<br />
               <strong>MAE:</strong> {{ metrics.mae }}<br />
               <strong>PSNR (dB):</strong> {{ metrics.psnr_db }}
             </p>
-            <p style="margin: 8px 0 0 0; font-size: 12px; color: #555;">
+            <p style="margin: 8px 0 0 0; font-size: 12px; color: #555">
               These values compare the internally stored 4×4 resized original
               image to the decrypted 4×4 image (pixel-wise RGB).<br />
               • Lower MSE / MAE → better match.<br />
@@ -86,10 +76,17 @@
                 <label>Upload Image</label>
                 <input type="file" name="image" accept="image/*" required />
 
-                <label>Secret Key</label>
+                <label>AES Secret Key</label>
                 <input
                   type="text"
-                  name="key"
+                  name="aes_key"
+                  required
+                  placeholder="Enter your secret key"
+                />
+                <label>DES Secret Key</label>
+                <input
+                  type="text"
+                  name="des_key"
                   required
                   placeholder="Enter your secret key"
                 />
@@ -110,7 +107,14 @@
                 <label>Secret Key</label>
                 <input
                   type="text"
-                  name="key"
+                  name="aes_key"
+                  required
+                  placeholder="Enter your secret key"
+                />
+                <label>DES Secret Key</label>
+                <input
+                  type="text"
+                  name="des_key"
                   required
                   placeholder="Enter your secret key"
                 />
