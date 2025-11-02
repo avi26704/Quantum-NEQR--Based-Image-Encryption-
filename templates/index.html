@@ -17,15 +17,19 @@
         <div class="result-box">
           <strong>{{ result }}</strong>
         </div>
-        {% endif %} {% if image_data %}
+        {% endif %}
+
+        {% if image_data %}
         <div class="result-box">
           <h3>Decrypted Image:</h3>
+
           <img
             src="data:image/png;base64,{{ image_data }}"
             alt="Decrypted Image"
             style="max-width: 250px; border-radius: 8px; margin-top: 10px"
           />
           <br />
+
           <!-- ✅ Download Decrypted Image -->
           <a
             href="data:image/png;base64,{{ image_data }}"
@@ -42,6 +46,34 @@
             "
             >Download Decrypted Image</a
           >
+
+          <!-- ✅ Metrics block -->
+          {% if metrics %}
+          <div
+            class="metrics-box"
+            style="
+              background-color: #f8f9fa;
+              border: 1px solid #dcdcdc;
+              border-radius: 8px;
+              padding: 12px 16px;
+              margin-top: 16px;
+              text-align: left;
+            "
+          >
+            <h4 style="margin: 0 0 8px 0;">Quality Metrics</h4>
+            <p style="margin: 4px 0; font-size: 14px; line-height: 1.4;">
+              <strong>MSE:</strong> {{ metrics.mse }}<br />
+              <strong>MAE:</strong> {{ metrics.mae }}<br />
+              <strong>PSNR (dB):</strong> {{ metrics.psnr_db }}
+            </p>
+            <p style="margin: 8px 0 0 0; font-size: 12px; color: #555;">
+              These values compare the internally stored 4×4 resized original
+              image to the decrypted 4×4 image (pixel-wise RGB).<br />
+              • Lower MSE / MAE → better match.<br />
+              • Higher PSNR → better match. "inf" means perfect reconstruction.
+            </p>
+          </div>
+          {% endif %}
         </div>
         {% endif %}
 
@@ -63,7 +95,7 @@
                 />
 
                 <button type="submit" name="action" value="encrypt">
-                  Encrypt & Download Ciphertext
+                  Encrypt &amp; Download Ciphertext
                 </button>
               </form>
             </div>
@@ -84,7 +116,7 @@
                 />
 
                 <button type="submit" name="action" value="decrypt">
-                  Decrypt & Show Image
+                  Decrypt &amp; Show Image
                 </button>
               </form>
             </div>
